@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Dasha ❄️</title>
+    <style>
+        /* ----- Reset e Base ----- */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #79a6d2, #e0f7fa);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            overflow-x: hidden;
+            color: #003366;
+        }
+
+        /* ----- Efeito de neve no fundo da página ----- */
+        .snow-animation {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(white 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: snowFloat 30s linear infinite;
+            opacity: 0.2;
+        }
+
+        @keyframes snowFloat {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 1000px; }
+        }
+
+        /* ----- Conteúdo principal ----- */
+        .main-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin: 20px 0;
+        }
+
+        .instructions {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        /* ----- Container do jogo ----- */
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .game-box {
+            width: 90vw;
+            max-width: 400px;
+            height: 400px;
+            background-color: #ffffffdd;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        /* ----- Flocos de neve do jogo ----- */
+        .snowflakes {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+
+        .snowflake {
+            font-size: 28px;
+            position: absolute;
+            cursor: pointer;
+            user-select: none;
+            top: 0;
+            animation-name: fall;
+            animation-timing-function: linear;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+            pointer-events: auto;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(400px); opacity: 0; }
+        }
+
+        /* ----- Espaço pro GIF ----- */
+        .gif-space {
+            margin-top: 20px;
+            height: 100px;
+        }
+
+        /* ----- Carta de amor ----- */
+        .letter {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,50,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            padding: 20px;
+        }
+
+        .envelope {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 600px;
+            box-shadow: 0 0 20px #fff;
+            animation: fadeIn 1s ease-in;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+
+        .letter-content p {
+            text-align: left;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        /* ----- Botão da carta ----- */
+        button {
+            padding: 10px 20px;
+            background: #87CEFA;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        /* ----- Animação de entrada da carta ----- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* ----- Responsividade para celular ----- */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .instructions {
+                font-size: 1em;
+            }
+
+            .game-box {
+                height: 300px;
+            }
+
+            .envelope {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="snow-animation"></div>
+
+    <div class="main-content">
+        <h1>⛄ Dasha’s Good Morning Game ⛄</h1>
+        <p class="instructions">Collect at least 10 snowflakes and see what happens! ❄️</p>
+
+        <div class="game-container">
+            <div class="game-box">
+                <p>Score: <span id="score">0</span> | Time: <span id="timer">60</span>s</p>
+                <div class="snowflakes" id="snowflakes"></div>
+            </div>
+
+            <!-- Espaço para o GIF do boneco de neve -->
+            <div class="gif-space">
+                <img src="https://github.com/joskebinho2049/goodmorningdasha/blob/main/tumblr_mf49rn1Tlv1rfjowdo1_500%20(1).gif?raw=true" alt="Snowman GIF" class="snowman-gif">
+            </div>
+        </div>
+    </div>
+
+    <div class="letter" id="letter">
+        <div class="envelope">
+            <div class="letter-content">
+                <h2>💌 A Good Morning letter for Dasha 💌</h2>
+                <p>Hey Dasha ❄️💙</p>
+                <p>So here’s the thing... we met on <strong>Speaky</strong> to trade languages 🧠🇧🇷🇷🇺<br>
+                But let’s be honest — if we keep going like this, we’re gonna end up swapping more than just words.<br>
+                Like... kisses. Plural. Probably accidental. Probably cute. Probably well-deserved. 💋😂</p>
+
+                <p>Today? I didn’t get much done.<br>
+                I just kept thinking about you. Like, the type of thinking where even coffee was like, “bro chill” ☕😅<br>
+                And honestly? Every time I imagined you waking up and smiling — boom, serotonin unlocked. 🧠💥</p>
+
+                <p>I know this page is snow-themed... but plot twist: I’m the one MELTING.<br>
+                Your eyes? Glacier blue. ❄️ Your skin? Soft like new snow. ❄️<br>
+                Your hair? Literally looks like sunshine got tired of the sky and moved onto your head. ☀️</p>
+
+                <p>I swear, you might be some kind of Russian winter fairy sent to haunt my brain with charm.<br>
+                Which is unfair. I didn’t sign up for this. 😤 (I mean I did. But still.)</p>
+
+                <p>Anyway... I made this little game hoping you’d wake up, play, and smile.<br>
+                If you’re reading this now — then mission complete. I win. 😏<br>
+                (Well, technically YOU win... snowflakes. But I win your smile. Which is way better. 😎)</p>
+
+                <p>I’m probably gonna keep thinking about you now. And tomorrow. And every time it snows...<br>
+                Even if it's 38°C in Brazil and I’m sweating like a confused snowman. 🥵⛄</p>
+
+                <p>Until our next chat, next language lesson... or next accidental romantic poetry moment 😂<br>
+                Stay magical, Dasha ❄️👑<br>
+                And don’t forget: you’re being thought of — by a Brazilian guy grinning like a fool. ❤️🇧🇷</p>
+
+                <p>From your personal language partner,<br>
+                — Felipe 💙 (aka your international hubby 😄📦)</p>
+
+                <button onclick="closeLetter()">Close ❌</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let score = 0;
+        let timeLeft = 600;
+        let timerInterval;
+
+        function spawnSnowflake() {
+            const container = document.getElementById('snowflakes');
+            const flake = document.createElement('div');
+            flake.classList.add('snowflake');
+            flake.innerText = '❄️';
+            flake.style.left = `${Math.random() * 90}%`;
+            flake.style.top = `-30px`;
+            flake.style.fontSize = `${Math.random() * 10 + 20}px`;
+            flake.style.animationDuration = `${Math.random() * 3 + 3}s`;
+            flake.onclick = () => collectFlake(flake);
+            container.appendChild(flake);
+            flake.addEventListener('animationend', () => {
+                if (flake.parentElement) flake.remove();
+            });
+        }
+
+        function collectFlake(flake) {
+            if (flake.parentElement) {
+                flake.remove();
+                score++;
+                document.getElementById('score').innerText = score;
+
+                if (score >= 10) {
+                    openLetter();
+                }
+            }
+        }
+
+        function startGame() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert('Time’s up! Try again!');
+                }
+            }, 1000);
+
+            setInterval(spawnSnowflake, 1000);
+        }
+
+        function openLetter() {
+            document.getElementById('letter').style.display = 'flex';
+        }
+
+        function closeLetter() {
+            document.getElementById('letter').style.display = 'none';
+        }
+
+        window.onload = startGame;
+    </script>
+</body>
+</html>

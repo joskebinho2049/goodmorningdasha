@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             background: linear-gradient(to bottom, #79a6d2, #e0f7fa);
-            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-family: 'Arial', sans-serif;
             overflow-x: hidden;
             color: #003366;
         }
@@ -123,12 +123,20 @@
             animation: fadeIn 1s ease-in;
             overflow-y: auto;
             max-height: 90vh;
+            width: 100%;
         }
 
         .letter-content p {
             text-align: left;
             margin-bottom: 15px;
-            line-height: 1.6;
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+
+        .letter-content h2 {
+            text-align: center;
+            font-size: 1.6em;
+            margin-bottom: 20px;
         }
 
         /* ----- Botão da carta ----- */
@@ -140,6 +148,9 @@
             cursor: pointer;
             font-size: 1em;
             margin-top: 10px;
+            display: block;
+            width: 100%;
+            text-align: center;
         }
 
         /* ----- Animação de entrada da carta ----- */
@@ -162,8 +173,14 @@
                 height: 300px;
             }
 
+            .letter-content p {
+                font-size: 1em;
+                margin-bottom: 10px;
+            }
+
             .envelope {
                 padding: 10px;
+                max-width: 90%;
             }
         }
     </style>
